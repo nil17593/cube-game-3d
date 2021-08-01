@@ -6,26 +6,29 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private int score;
+    [SerializeField] private GameObject gameOver;
     private TextMeshProUGUI scoreText;
+    [SerializeField] PlayerCollisions playerCollisions;
 
     private void Awake()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
     }
-    private void Start()
-    {
-        RefreshUI();
-    }
     
     void Update()
     {
-        //Debug.Log(player.position.z);
-        scoreText.text = player.position.z.ToString("0");
+        IncreaseScore();
     }
 
-    void RefreshUI()
+    void IncreaseScore()
     {
-        scoreText.text = "Score" + score;
+        if (!playerCollisions.gameover)
+        {
+            scoreText.text = player.position.z.ToString("Score:0");
+        }
+        else
+        {
+            gameOver.SetActive(true);
+        }
     }
 }

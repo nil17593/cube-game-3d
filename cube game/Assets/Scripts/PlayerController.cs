@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float xAxisForce;
     [SerializeField] private float forwardForce;
+    [SerializeField] GameObject gameOver;
     bool leftKey, rightKey;
 
 
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour
         else if (leftKey)
         {
             rb.AddForce(-xAxisForce * Time.deltaTime, 0, 0,ForceMode.VelocityChange);
+        }
+        else if (rb.position.y < -1)
+        {
+            gameOver.SetActive(true);
         }
     }
 

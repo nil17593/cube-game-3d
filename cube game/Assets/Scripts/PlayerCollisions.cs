@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerCollisions : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private ScoreController scoreController;
+    [HideInInspector] public bool gameover = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
             playerController.enabled = false;
-            
+            gameover = true;
         }
     }
 }
