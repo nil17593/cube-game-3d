@@ -12,9 +12,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //leftKey = Input.GetKeyDown(KeyCode.A);
-        //rightKey= Input.GetKeyDown(KeyCode.D);
-
         leftKey = Input.GetKey("a");
         rightKey = Input.GetKey("d");
         Movement();
@@ -22,30 +19,18 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(0, 0, forwardForce*Time.deltaTime);
-
-        //add force to the x axis
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    rb.AddForce(xAxisForce * Time.deltaTime, 0, 0);
-        //}
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    rb.AddForce(-xAxisForce * Time.deltaTime, 0, 0);
-        //}
-
     }
     void Movement()
     {
         if (rightKey)
         {
-            rb.AddForce(xAxisForce * Time.deltaTime, 0, 0);
+            rb.AddForce(xAxisForce * Time.deltaTime, 0, 0 , ForceMode.VelocityChange);
         }
 
-        if (leftKey)
+        else if (leftKey)
         {
-            rb.AddForce(-xAxisForce * Time.deltaTime, 0, 0);
+            rb.AddForce(-xAxisForce * Time.deltaTime, 0, 0,ForceMode.VelocityChange);
         }
-
     }
 
 }
